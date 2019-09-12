@@ -1,10 +1,8 @@
-# CPPND: Capstone Hello World Repo
+# CPPND: Capstone Rogue-Lite
 
-This is a starter repo for the Capstone project in the [Udacity C++ Nanodegree Program](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213).
+It this project, I'll program a rudimentary game engine that will be used to a rogue-lite, game, that is, a game that is inspired and share some gameplay and thematic characteristics with the classic game *Rogue*. It is essentially a turn-based dungeon crawling game, in which one player character moves through a dungeon in turns, after which every other creature in this same dungeon will also move.
 
-The Capstone Project gives you a chance to integrate what you've learned throughout this program. This project will become an important part of your portfolio to share with current and future colleagues and employers.
-
-In this project, you can build your own C++ application starting with this repo, following the principles you have learned throughout this Nanodegree Program. This project will demonstrate that you can independently create applications using a wide range of C++ features.
+The game engine itself will be based on the ECS architecture (*Entity-Component-System*), a data-driven game programming pattern that defines its game world as composed of Entities, which contain any number of Components, which are acted upon by independent Systems. The specifics of the ECS architecture implemented in this work is described below, as well as which entities, components and systems the game itself implement.
 
 ## Dependencies for Running Locally
 * cmake >= 3.7
@@ -18,9 +16,64 @@ In this project, you can build your own C++ application starting with this repo,
   * Mac: same deal as make - [install Xcode command line tools](https://developer.apple.com/xcode/features/)
   * Windows: recommend using [MinGW](http://www.mingw.org/)
 
+*TBD - add SDL dependencies for drawing*
+
 ## Basic Build Instructions
 
 1. Clone this repo.
 2. Make a build directory in the top level directory: `mkdir build && cd build`
 3. Compile: `cmake .. && make`
-4. Run it: `./HelloWorld`.
+4. Run it: `./RogueLite`.
+
+*TODO - simplify the build process ;P*
+
+## Rubrics Addressed
+
+The following criteria have been or will be addressed in the development of this project:
+
+### Loops, Functions, I/O
+
+[ ] The project reads data from a file and process the data, or the program writes data to a file.
+[ ] The project accepts user input and processes the input.
+
+### Object Oriented Programming
+
+[ ] Derived class functions override virtual base class functions.
+[ ] Templates generalize functions in the project.
+
+### Memory Management
+
+[ ] The project makes use of references in function declarations.
+[ ] The project follows the Rule of 5.
+[ ] The project uses smart pointers instead of raw pointers.
+
+### Concurrency
+
+[ ] The project uses multithreading.
+[ ] A mutex or lock is used in the project.
+
+*TODO: EVERYTHING below*
+
+# Project Architecture
+
+## ECS Characterstics
+
+### Entity Types
+
+### Component Types
+
+### System Types
+
+## The Rogue Engine
+
+### Entities
+
+### Components
+
+### Systems
+
+# Game Manual
+
+## How to Play
+
+## Objective
