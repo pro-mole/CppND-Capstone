@@ -1,6 +1,19 @@
 #include <iostream>
 
+#include "world.hxx"
+
 int main() {
-    std::cout << "Hello World!" << "\n";
+    ECS::World* world = new ECS::World();
+
+    world->start();
+
+    while (world->isRunning()) {
+        world->run();
+    }
+
+    delete world;
+
+    std::cout << "Thanks for playing!" << std::endl;
+
     return 0;
 }
