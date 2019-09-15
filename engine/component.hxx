@@ -1,10 +1,15 @@
-#pragma once
+namespace ECS {
+    class Component;
+}
+
+#ifndef COMPONENT_H
+#define COMPONENT_H
 
 #include <condition_variable>
 #include <list>
 #include <mutex>
 
-#include "Entity"
+#include "entity.hxx"
 
 namespace ECS {
 
@@ -17,7 +22,9 @@ namespace ECS {
         Entity* entity;
 
         bool locked;
-        std::mutex lock;
-        std::condtion_variable condition;
-    }
+        std::mutex _lock;
+        std::condition_variable _condition;
+    };
 }  // namespace ECS
+
+#endif
