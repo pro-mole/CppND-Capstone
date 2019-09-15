@@ -1,6 +1,7 @@
 // Game World Implementation
 #include <iostream>
 #include <string>
+#include <thread>
 #include <typeinfo>
 
 #include "world.hxx"
@@ -66,12 +67,11 @@ void ECS::World::start() {
         std::unique_ptr<SDL_Surface>(SDL_GetWindowSurface(this->window.get()));
 
     this->running = true;
+    this->last_update = SDL_GetTicks();
 }
 
 // Process one single tick for every system in the world
 void ECS::World::run() {
-    // Update the tick value
-
     // Handle events
     SDL_Event ev;
     while (SDL_PollEvent(&ev) != 0) {
@@ -81,9 +81,19 @@ void ECS::World::run() {
         }
     }
 
+    std::list<std::thread> system_threads;
     // Run every system in a separate thread
+    for (auto system : this->systems) {
+        system_threads.emplace_back(std::thread(&System::runOnWorld, system));
+    }
+
+    for (auto &thread : system_threads) {
+        thread.join();
+    }
 
     // Update the last update time
+    this->current_tick = SDL_GetTicks() - this->last_update;
+    this->last_update = SDL_GetTicks();
 
     SDL_UpdateWindowSurface(this->window.get());
 }
