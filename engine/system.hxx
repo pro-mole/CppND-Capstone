@@ -18,7 +18,8 @@ namespace ECS {
         System(World*);
 
         // Fetch all of the required components in the target entity
-        virtual std::list<Entity&> getComponents(Entity& entity) = 0;
+        virtual std::list<std::shared_ptr<Component>> getComponents(
+            Entity& entity) = 0;
 
         // Run logic on a particular entity
         virtual void runOnEntity(Entity& entity) = 0;

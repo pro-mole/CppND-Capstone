@@ -34,6 +34,8 @@ namespace ECS {
         template <class S>
         std::shared_ptr<S> getSystem();
 
+        std::list<std::shared_ptr<Entity>>& getEntities();
+
         bool isRunning();
 
         // Processing functions

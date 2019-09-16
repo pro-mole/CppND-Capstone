@@ -23,8 +23,7 @@ template <class C>
 std::shared_ptr<C> ECS::Entity::getComponent() {
     std::shared_ptr<C> pointer;
 
-    for (auto component = this->components.begin();
-         component != this->components.end(); component++) {
+    for (auto component : this->components) {
         pointer = dynamic_cast<C>(component);
         if (pointer != nullptr) return pointer;
     }
