@@ -18,8 +18,9 @@ namespace ECS {
     public:
         Entity();
 
-        template <class C>
-        Component& addComponent();
+        Component& addComponent(Component&);
+        Component& addComponent(std::shared_ptr<Component>);
+
         template <class C>
         std::shared_ptr<C> getComponent();
 

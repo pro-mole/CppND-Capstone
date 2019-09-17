@@ -9,14 +9,9 @@ int ECS::Entity::last_id = 0;
 ECS::Entity::Entity() : id(++ECS::Entity::last_id) {}
 
 // Adds a component of given type to the Entity
-template <class C>
-ECS::Component& ECS::Entity::addComponent() {
-    static_assert(std::is_base_of<ECS::Component, C>::value,
-                  "Attempt to create Component of non-Component class!");
-
-    C newComponent;
-    this->components.push_back(newComponent);
-    return newComponent;
+ECS::Component& ECS::Entity::addComponent(ECS::Component& component) {
+    this->components.push_back(component);
+    return component;
 }
 
 // Fetch a component of given type from the Entity (or null, if none was found)
