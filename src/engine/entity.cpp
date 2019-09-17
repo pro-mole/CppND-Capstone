@@ -9,7 +9,14 @@ int ECS::Entity::last_id = 0;
 ECS::Entity::Entity() : id(++ECS::Entity::last_id) {}
 
 // Adds a component of given type to the Entity
-ECS::Component& ECS::Entity::addComponent(ECS::Component& component) {
+std::shared_ptr<ECS::Component> ECS::Entity::addComponent(ECS::Component& C) {
+    std::shared_ptr<Component> component(&C);
+    this->components.push_back(component);
+    return component;
+}
+
+std::shared_ptr<ECS::Component> ECS::Entity::addComponent(
+    std::shared_ptr<Component> component) {
     this->components.push_back(component);
     return component;
 }

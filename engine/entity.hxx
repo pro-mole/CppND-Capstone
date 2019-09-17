@@ -18,8 +18,8 @@ namespace ECS {
     public:
         Entity();
 
-        Component& addComponent(Component&);
-        Component& addComponent(std::shared_ptr<Component>);
+        std::shared_ptr<Component> addComponent(Component&);
+        std::shared_ptr<Component> addComponent(std::shared_ptr<Component>);
 
         template <class C>
         std::shared_ptr<C> getComponent();
@@ -31,7 +31,7 @@ namespace ECS {
         static int last_id;
         int id;
 
-        std::list<Component> components;
+        std::list<std::shared_ptr<Component>> components;
         EntityState status;
 
         bool locked;
