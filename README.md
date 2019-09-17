@@ -36,8 +36,6 @@ Alternatively:
 3. Compile: `cmake .. && make`
 4. Run it: `./RogueLite`.
 
-*TODO - simplify the build process ;P*
-
 ## Rubrics Addressed
 
 The following criteria have been or will be addressed in the development of this project:
