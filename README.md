@@ -18,6 +18,17 @@ The game engine itself will be based on the ECS architecture (*Entity-Component-
 
 *TBD - add SDL dependencies for drawing*
 
+## Easy Build-and-Run Instructions
+
+1. Clone this repo.
+2. Run `./run.sh`
+
+Alternatively:
+
+1. Clone this repo.
+2. Run `./make.sh`
+3. Run `./RogueLite`
+
 ## Basic Build Instructions
 
 1. Clone this repo.
