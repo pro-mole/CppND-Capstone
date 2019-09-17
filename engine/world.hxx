@@ -24,7 +24,6 @@ namespace ECS {
     class World {
     public:
         World();
-        ~World();
 
         // Organization functions
         std::shared_ptr<Entity> createEntity();

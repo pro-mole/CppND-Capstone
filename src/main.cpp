@@ -3,15 +3,21 @@
 #include "world.hxx"
 
 int main() {
-    ECS::World* world = new ECS::World();
+    std::shared_ptr<ECS::World> world(new ECS::World());
 
+    // Setup systems (TODO)
+
+    // Setup entities
+    std::shared_ptr<ECS::Entity> player = world->createEntity();
+    std::shared_ptr<ECS::Entity> map = world->createEntity();
+    std::shared_ptr<ECS::Entity> loader = world->createEntity();
+
+    // Begin!
     world->start();
 
     while (world->isRunning()) {
         world->run();
     }
-
-    delete world;
 
     std::cout << "Thanks for playing!" << std::endl;
 

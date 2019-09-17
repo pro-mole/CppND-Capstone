@@ -1,13 +1,9 @@
 // System Implementation
 #include "system.hxx"
 
-// Instantiate a new System
-ECS::System::System(ECS::World* world)
-    : world(std::shared_ptr<ECS::World>(world)) {}
-
-void ECS::System::runOnWorld() {
+void ECS::System::runOnWorld(ECS::World* world) {
     // For each entity in the world:
-    for (auto entity : this->world->getEntities()) {
+    for (auto entity : world->getEntities()) {
         // - Fetch the required components
         std::list<std::shared_ptr<ECS::Component>> components =
             this->getComponents(*entity);

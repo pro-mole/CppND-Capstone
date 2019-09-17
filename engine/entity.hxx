@@ -16,7 +16,7 @@ namespace ECS {
 
     class Entity {
     public:
-        Entity(World*);
+        Entity();
 
         template <class C>
         Component& addComponent();
@@ -30,7 +30,6 @@ namespace ECS {
         static int last_id;
         int id;
 
-        std::shared_ptr<World> world;
         std::list<Component> components;
         EntityState status;
 

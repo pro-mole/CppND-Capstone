@@ -15,7 +15,7 @@ namespace ECS {
 
     class System {
     public:
-        System(World*);
+        System();
 
         // Fetch all of the required components in the target entity
         virtual std::list<std::shared_ptr<Component>> getComponents(
@@ -26,10 +26,9 @@ namespace ECS {
 
         // Run logic on every entity in the world that may be affected by this
         // system
-        void runOnWorld();
+        void runOnWorld(World* world);
 
     private:
-        std::shared_ptr<ECS::World> world;
     };
 
 }  // namespace ECS

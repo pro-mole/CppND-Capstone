@@ -11,20 +11,9 @@ ECS::World::World() : last_update(0), current_tick(0), running(false) {
     // Nothing to do for now
 }
 
-// Destroy the World
-ECS::World::~World() {
-    for (std::shared_ptr<ECS::Entity> entity : this->entities) {
-        delete entity.get();
-    }
-
-    for (std::shared_ptr<ECS::System> system : this->systems) {
-        delete system.get();
-    }
-}
-
 // Create an Entity in the World
 std::shared_ptr<ECS::Entity> ECS::World::createEntity() {
-    std::shared_ptr<ECS::Entity> newEntity(new ECS::Entity(this));
+    std::shared_ptr<ECS::Entity> newEntity(new ECS::Entity());
 
     this->entities.push_back(newEntity);
     return newEntity;
@@ -36,10 +25,15 @@ std::shared_ptr<S> ECS::World::createSystem() {
     static_assert(std::is_base_of<ECS::System, S>::value,
                   "Attempt to create System of non-System class!");
 
-    std::shared_ptr<S> newSystem(new S(this));
+    std::shared_ptr<S> newSystem(new S());
 
     this->systems.push_back(newSystem);
     return newSystem;
+}
+
+// Return the list of entities in this world
+std::list<std::shared_ptr<ECS::Entity>>& ECS::World::getEntities() {
+    return this->entities;
 }
 
 // Is the world running?
@@ -78,16 +72,18 @@ void ECS::World::run() {
         // Close button and/or interrupt
         if (ev.type == SDL_QUIT) {
             this->end();
+            return;
         }
     }
 
     std::list<std::thread> system_threads;
     // Run every system in a separate thread
     for (auto system : this->systems) {
-        system_threads.emplace_back(std::thread(&System::runOnWorld, system));
+        system_threads.emplace_back(
+            std::thread(&System::runOnWorld, system, this));
     }
 
-    for (auto &thread : system_threads) {
+    for (auto& thread : system_threads) {
         thread.join();
     }
 
@@ -105,5 +101,6 @@ void ECS::World::end() {
     SDL_DestroyWindow(this->window.get());
 
     SDL_Quit();
+
     this->running = false;
 }
