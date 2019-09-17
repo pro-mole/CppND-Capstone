@@ -26,9 +26,11 @@ namespace ECS {
         World();
 
         // Organization functions
-        std::shared_ptr<Entity> createEntity();
-        template <class S>
-        std::shared_ptr<S> createSystem();
+        std::shared_ptr<Entity> addEntity(Entity&);
+        std::shared_ptr<Entity> addEntity(std::shared_ptr<Entity>);
+
+        std::shared_ptr<System> addSystem(System&);
+        std::shared_ptr<System> addSystem(std::shared_ptr<System>);
 
         template <class S>
         std::shared_ptr<S> getSystem();

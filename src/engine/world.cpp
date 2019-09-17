@@ -12,23 +12,31 @@ ECS::World::World() : last_update(0), current_tick(0), running(false) {
 }
 
 // Create an Entity in the World
-std::shared_ptr<ECS::Entity> ECS::World::createEntity() {
-    std::shared_ptr<ECS::Entity> newEntity(new ECS::Entity());
+std::shared_ptr<ECS::Entity> ECS::World::addEntity(ECS::Entity& E) {
+    std::shared_ptr<ECS::Entity> entity(&E);
 
-    this->entities.push_back(newEntity);
-    return newEntity;
+    this->entities.push_back(entity);
+    return entity;
+}
+
+std::shared_ptr<ECS::Entity> ECS::World::addEntity(
+    std::shared_ptr<Entity> entity) {
+    this->entities.push_back(entity);
+    return entity;
 }
 
 // Create a System in the World
-template <class S>
-std::shared_ptr<S> ECS::World::createSystem() {
-    static_assert(std::is_base_of<ECS::System, S>::value,
-                  "Attempt to create System of non-System class!");
+std::shared_ptr<ECS::System> ECS::World::addSystem(ECS::System& S) {
+    std::shared_ptr<ECS::System> system(&S);
 
-    std::shared_ptr<S> newSystem(new S());
+    this->systems.push_back(system);
+    return system;
+}
 
-    this->systems.push_back(newSystem);
-    return newSystem;
+std::shared_ptr<ECS::System> ECS::World::addSystem(
+    std::shared_ptr<ECS::System> system) {
+    this->systems.push_back(system);
+    return system;
 }
 
 // Return the list of entities in this world

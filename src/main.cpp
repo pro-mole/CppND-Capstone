@@ -8,9 +8,13 @@ int main() {
     // Setup systems (TODO)
 
     // Setup entities
-    std::shared_ptr<ECS::Entity> player = world->createEntity();
-    std::shared_ptr<ECS::Entity> map = world->createEntity();
-    std::shared_ptr<ECS::Entity> loader = world->createEntity();
+    std::shared_ptr<ECS::Entity> player(new ECS::Entity());
+    std::shared_ptr<ECS::Entity> map(new ECS::Entity());
+    std::shared_ptr<ECS::Entity> loader(new ECS::Entity());
+
+    world->addEntity(player);
+    world->addEntity(map);
+    world->addEntity(loader);
 
     // Begin!
     world->start();
