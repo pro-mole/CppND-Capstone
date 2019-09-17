@@ -39,18 +39,21 @@ The following criteria have been or will be addressed in the development of this
 ### Object Oriented Programming
 
 - [ ] Derived class functions override virtual base class functions.
-- [ ] Templates generalize functions in the project.
+- [x] Templates generalize functions in the project.
+    - *src/engine/entity.cpp:18*
 
 ### Memory Management
 
-- [ ] The project makes use of references in function declarations.
-- [ ] The project follows the Rule of 5.
-- [ ] The project uses smart pointers instead of raw pointers.
+- [x] The project makes use of references in function declarations.
+    - *engine/world.hxx:29*, *engine/world.hxx:32*, *engine/entity.hxx:21*
+- [x] The project uses smart pointers instead of raw pointers.
 
 ### Concurrency
 
-- [ ] The project uses multithreading.
-- [ ] A mutex or lock is used in the project.
+- [x] The project uses multithreading.
+    - *src/engine/world.cpp:89-96*
+- [x] A mutex or lock is used in the project.
+    - *src/engine/system.cpp:12-24*
 
 *TODO: EVERYTHING below*
 
